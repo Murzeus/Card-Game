@@ -31,6 +31,9 @@ export function Lobby() {
   const [isConnected, setIsConnected] = useState(false);
   const [gameState, setGameState] = useState(null);
 
+  // admin mode state
+  const [adminMode, setAdminMode] = useState(false);
+
   // Load saved name when component mounts
   useEffect(() => {
     const savedName = localStorage.getItem('playerName');
@@ -140,6 +143,22 @@ export function Lobby() {
     socket.emit('start_game');
   };
 
+  // enter admin mode
+  const enableAdminMode = () => {
+    const entered = prompt("Enter admin secret:");
+    if (entered === import.meta.env.VITE_ADMIN_SECRET) {
+      setAdminMode(true);
+      alert("Admin mode activated!");
+    } else {
+      alert("Wrong secret!");
+    }
+  };
+
+  // clear lobby action
+  const clearLobby = () => {
+    socket.emit('clear_lobby');
+  };
+
   const canStartGame = players.length === 3 && isConnected;
 
   if (!currentPlayer) {
@@ -177,6 +196,16 @@ export function Lobby() {
         <button onClick={handleLeave} className="leave-button">
           {gameState ? 'Leave Game' : 'Leave Lobby'}
         </button>
+
+        {/* Admin controls */}
+        {!adminMode && (
+          <button onClick={enableAdminMode}>Enter Admin Mode</button>
+        )}
+        {adminMode && (
+          <button style={{ backgroundColor: "red", color: "white" }} onClick={clearLobby}>
+            Clear Lobby
+          </button>
+        )}
       </div>
     </div>
   );

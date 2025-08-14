@@ -324,6 +324,12 @@ io.on('connection', (socket) => {
       socket.emit('current_state', gameState);
     }
   });
+  //admin clear lobby
+  socket.on("clear_lobby", () => {
+    lobbyPlayers = [];
+    io.emit("players_updated", lobbyPlayers);
+    console.log("Lobby cleared");
+});
 
   socket.on('disconnect', () => {
     console.log(`💨 Player ${playerId} disconnected`);
