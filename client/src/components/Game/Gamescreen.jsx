@@ -115,8 +115,9 @@ export function GameScreen({ onLeave }) {
       setAwaitingDecision(true);
     };
 
-    const onTurnStarted = ({ endTime, totalTurnTime }) => {
-      startLocalCountdown(endTime, totalTurnTime);
+    const onTurnStarted = ({ endTime, totalTurnTimeMs  }) => {
+      const calculatedEndTime = Date.now() + totalTurnTimeMs;
+      startLocalCountdown(calculatedEndTime, totalTurnTimeMs / 1000);
     };
 
     socket.on('connect', onConnect);

@@ -80,19 +80,24 @@ function startTurnTimer(currentPlayerId) {
   Object.values(turnTimers).forEach(clearTimeout);
   turnTimers = {};
 
-  const endTime = Date.now() + TURN_TIMEOUT_MS;
+  const totalTurnTimeMs = TURN_TIMEOUT_MS;
+  const serverEndTime = Date.now() + totalTurnTimeMs;
+
+  // Tell clients a new turn began. Clients will use totalTurnTimeMs to count down locally.
   io.emit('turn_started', {
     playerId: currentPlayerId,
-    endTime // frontend calculates countdown
+    totalTurnTimeMs, 
+    serverEndTime     
   });
 
+  // Server-side enforcement still uses the real timeout
   turnTimers[currentPlayerId] = setTimeout(() => {
     const player = gameState?.players.find(p => p.id === currentPlayerId);
     if (player && player.hand.length > 0) {
       io.emit('game_canceled', { reason: `${player.name} took too long` });
       gameState = null;
     }
-  }, TURN_TIMEOUT_MS);
+  }, totalTurnTimeMs);
 }
 
 io.on('connection', (socket) => {
