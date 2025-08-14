@@ -1,0 +1,218 @@
+/* Base styles (Light Mode default) */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center; /* horizontal centering */
+  align-items: center;     /* vertical centering */
+}
+
+.game-screen {
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+}
+
+.error-message {
+  color: #ff4444;
+  background: #ffeeee;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.game-status {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  padding: 10px;
+  background: #f5f5f5;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.piles-container {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 30px;
+  justify-content: center;
+}
+
+.pile {
+  border: 1px solid #ddd;
+  padding: 15px;
+  border-radius: 8px;
+  min-width: 180px;
+  background: #f9f9f9;
+}
+
+.pile h3 {
+  margin-top: 0;
+  text-align: center;
+  color: #333;
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  min-height: 60px;
+  justify-content: center;
+}
+
+.card {
+  width: 50px;
+  height: 75px;
+  border: 1px solid #999;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  color: #000;
+  font-weight: bold;
+  box-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+}
+
+.playable {
+  cursor: pointer;
+  background: #e6f7ff;
+  transition: transform 0.2s;
+}
+
+.playable:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 8px rgba(0,0,0,0.15);
+}
+
+.fixed-card {
+  background: #f0f0f0;
+  color: #666;
+}
+
+.player-hand {
+  margin-top: 30px;
+  background: #f5f5f5;
+  padding: 15px;
+  border-radius: 8px;
+}
+
+.player-hand h3 {
+  margin-top: 0;
+  text-align: center;
+}
+
+.game-controls {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.game-controls button {
+  padding: 10px 20px;
+  background: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.game-controls button:hover {
+  background: #45a049;
+}
+
+/* New decision buttons */
+.decision-buttons {
+  margin-top: 20px;
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+.decision-buttons button {
+  padding: 12px 25px;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: background-color 0.2s ease;
+}
+
+.decision-buttons button:hover {
+  background: #0056b3;
+}
+
+/* 🌙 Dark Mode */
+@media (prefers-color-scheme: dark) {
+  .game-screen {
+    color: #eee;
+    background-color: #121212;
+  }
+
+  .error-message {
+    background: #331111;
+    color: #ff9999;
+  }
+
+  .game-status {
+    background: #1f1f1f;
+    color: #ddd;
+  }
+
+  .pile {
+    background: #1a1a1a;
+    border: 1px solid #333;
+  }
+
+  .pile h3 {
+    color: #ddd;
+  }
+
+  .card {
+    background: #2c2c2c;
+    color: #fff;
+    border: 1px solid #555;
+  }
+
+  .playable {
+    background: #003344;
+  }
+
+  .fixed-card {
+    background: #2a2a2a;
+    color: #999;
+  }
+
+  .player-hand {
+    background: #1f1f1f;
+  }
+
+  .game-controls button {
+    background: #388e3c;
+  }
+
+  .game-controls button:hover {
+    background: #2e7d32;
+  }
+  
+  .card.selected {
+    border-color: #007bff;
+    background-color: #cce5ff;
+    box-shadow: 0 0 8px #007bff;
+  }
+
+  .decision-buttons button {
+    background: #3399ff;
+  }
+
+  .decision-buttons button:hover {
+    background: #1a73e8;
+  }
+}
