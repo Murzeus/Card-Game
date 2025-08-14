@@ -18,7 +18,7 @@ function getOrCreatePlayerId() {
 const playerId = getOrCreatePlayerId();
 
 // Socket with persistent playerId in auth
-const socket = io('http://localhost:3000', {
+const socket = io(import.meta.env.VITE_SERVER_URL || 'http://localhost:3000', {
   autoConnect: false,
   reconnectionAttempts: 5,
   reconnectionDelay: 1000,

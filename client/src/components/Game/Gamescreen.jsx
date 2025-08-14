@@ -13,7 +13,7 @@ if (!playerId) {
 }
 
 // Create socket with playerId in auth
-const socket = io('http://localhost:3000', {
+const socket = io(import.meta.env.VITE_SERVER_URL || 'http://localhost:3000', {
   auth: { playerId },
   reconnectionAttempts: 5,
   reconnectionDelay: 1000
