@@ -4,6 +4,7 @@ import { PileView } from './PileView';
 import { PlayerHand } from './PlayerHand';
 import { CircularTimer } from './CircularTimer';
 import './gameStyles.css';
+import { CardBack } from './CardBack';
 
 // Create or reuse playerId in localStorage
 let playerId = localStorage.getItem('playerId');
@@ -115,7 +116,7 @@ export function GameScreen({ onLeave }) {
       setAwaitingDecision(true);
     };
 
-    const onTurnStarted = ({ endTime, totalTurnTimeMs  }) => {
+    const onTurnStarted = ({ endTime, totalTurnTimeMs }) => {
       const calculatedEndTime = Date.now() + totalTurnTimeMs;
       startLocalCountdown(calculatedEndTime, totalTurnTimeMs / 1000);
     };
@@ -178,6 +179,16 @@ export function GameScreen({ onLeave }) {
       {isReconnecting && (
         <div className="reconnecting-banner">Reconnecting to game...</div>
       )}
+
+      {/* Player Info - Show Name and Cards Left */}
+      <div className="players-info">
+        {gameState?.players.map((player) => (
+          <div key={player.id} className="player-info">
+            <CardBack />
+            <strong>{player.name}</strong>: {player.hand.length} cards left
+          </div>
+        ))}
+      </div>
 
       <div className="game-status" style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
         {!gameState ? (

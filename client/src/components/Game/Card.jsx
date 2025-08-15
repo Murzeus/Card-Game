@@ -51,8 +51,5 @@ export function Card({ card }) {
     pointerEvents: 'none', // let the wrapper (.card) handle clicks
   };
 
-  // Helpful debug line you can uncomment while tuning:
-  // console.log({ card, rank, suit, col, row, tileX, tileY });
-
   return <div className="card-sprite" style={style} aria-label={card} />;
 }

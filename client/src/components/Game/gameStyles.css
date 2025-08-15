@@ -1,4 +1,4 @@
-/* Base styles (Light Mode default) */
+/* Base styles (Dark Mode applied globally) */
 html, body {
   height: 100%;
   margin: 0;
@@ -13,11 +13,13 @@ html, body {
   max-width: 800px;
   margin: 0 auto;
   font-family: Arial, sans-serif;
+  color: #eee; /* Light text color for dark mode */
+  background-color: #121212; /* Dark background color */
 }
 
 .error-message {
-  color: #ff4444;
-  background: #ffeeee;
+  background: #331111;
+  color: #ff9999;
   padding: 10px;
   border-radius: 4px;
   margin-bottom: 15px;
@@ -28,9 +30,10 @@ html, body {
   font-size: 1.2rem;
   margin-bottom: 20px;
   padding: 10px;
-  background: #f5f5f5;
+  background: #1f1f1f;
   border-radius: 4px;
   text-align: center;
+  color: #ddd;
 }
 
 .piles-container {
@@ -41,17 +44,17 @@ html, body {
 }
 
 .pile {
-  border: 1px solid #ddd;
+  background: #1a1a1a;
+  border: 1px solid #333;
   padding: 15px;
   border-radius: 8px;
   min-width: 180px;
-  background: #f9f9f9;
 }
 
 .pile h3 {
   margin-top: 0;
   text-align: center;
-  color: #333;
+  color: #ddd;
 }
 
 .cards {
@@ -65,20 +68,20 @@ html, body {
 .card {
   width: 50px;
   height: 75px;
-  border: 1px solid #999;
+  border: 1px solid #555;
   border-radius: 5px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: white;
-  color: #000;
+  background: #2c2c2c;
+  color: #fff;
   font-weight: bold;
   box-shadow: 1px 1px 3px rgba(0,0,0,0.1);
 }
 
 .playable {
   cursor: pointer;
-  background: #e6f7ff;
+  background: #003344;
   transition: transform 0.2s;
 }
 
@@ -88,13 +91,13 @@ html, body {
 }
 
 .fixed-card {
-  background: #f0f0f0;
-  color: #666;
+  background: #2a2a2a;
+  color: #999;
 }
 
 .player-hand {
   margin-top: 30px;
-  background: #f5f5f5;
+  background: #1f1f1f;
   padding: 15px;
   border-radius: 8px;
 }
@@ -113,7 +116,7 @@ html, body {
 
 .game-controls button {
   padding: 10px 20px;
-  background: #4CAF50;
+  background: #388e3c;
   color: white;
   border: none;
   border-radius: 4px;
@@ -122,7 +125,7 @@ html, body {
 }
 
 .game-controls button:hover {
-  background: #45a049;
+  background: #2e7d32;
 }
 
 /* New decision buttons */
@@ -135,7 +138,7 @@ html, body {
 
 .decision-buttons button {
   padding: 12px 25px;
-  background: #007bff;
+  background: #3399ff;
   color: white;
   border: none;
   border-radius: 5px;
@@ -146,73 +149,32 @@ html, body {
 }
 
 .decision-buttons button:hover {
-  background: #0056b3;
+  background: #1a73e8;
 }
 
-/* 🌙 Dark Mode */
-@media (prefers-color-scheme: dark) {
-  .game-screen {
-    color: #eee;
-    background-color: #121212;
-  }
+.players-info {
+  display: flex;
+  gap: 20px;  /* Space between players */
+  align-items: center;  /* Vertically align the names and card backs */
+  justify-content: center; /* Center all the players horizontally */
+  flex-wrap: wrap; /* Allow wrapping to next line if necessary (for responsiveness) */
+  margin-bottom: 20px;  /* Space below the players' info section */
+}
 
-  .error-message {
-    background: #331111;
-    color: #ff9999;
-  }
+.player-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;  /* Space between card back and player name */
+  font-size: 1.1rem;  /* Font size for player name */
+}
 
-  .game-status {
-    background: #1f1f1f;
-    color: #ddd;
-  }
-
-  .pile {
-    background: #1a1a1a;
-    border: 1px solid #333;
-  }
-
-  .pile h3 {
-    color: #ddd;
-  }
-
-  .card {
-    background: #2c2c2c;
-    color: #fff;
-    border: 1px solid #555;
-  }
-
-  .playable {
-    background: #003344;
-  }
-
-  .fixed-card {
-    background: #2a2a2a;
-    color: #999;
-  }
-
-  .player-hand {
-    background: #1f1f1f;
-  }
-
-  .game-controls button {
-    background: #388e3c;
-  }
-
-  .game-controls button:hover {
-    background: #2e7d32;
-  }
-  
-  .card.selected {
-    border-color: #007bff;
-    background-color: #cce5ff;
-    box-shadow: 0 0 8px #007bff;
-  }
-
-  .decision-buttons button {
-    background: #3399ff;
-  }
-
-  .decision-buttons button:hover {
-    background: #1a73e8;
-  }
+/* If you need to adjust the size of the card back */
+.card-back {
+  width: 40px;
+  height: 60px;
+}
+.card.selected {
+  border-color: #007bff; /* Blue border for selected card */
+  background-color: #cce5ff; /* Light blue background for selected card */
+  box-shadow: 0 0 8px #007bff; /* Blue glow around selected card */
 }
