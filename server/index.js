@@ -25,7 +25,7 @@ let lobbyPlayers = [];
 let gameState = null;
 
 let turnTimers = {};
-const TURN_TIMEOUT_MS = 30000; // 30s to make a move
+const TURN_TIMEOUT_MS = 45000; // 30s to make a move
 
 // Helper Functions
 const shuffleDeck = () => {
@@ -274,6 +274,9 @@ io.on('connection', (socket) => {
     if (decision === 'pass') {
       gameState.currentPlayer = gameState.players[(currentIndex + 1) % gameState.players.length].id;
       startTurnTimer(gameState.currentPlayer);
+    } else if (decision === 'continue') {
+    // Still same player, but reset timer
+    startTurnTimer(playerId);
     }
     io.emit('game_updated', gameState);
   });
